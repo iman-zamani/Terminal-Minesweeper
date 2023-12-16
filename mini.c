@@ -214,7 +214,7 @@ void wtf(char arr1[100],int culom,int poin){
         if(i==poin){n=79;}
         color(n);
         if(arr1[i]==37)
-            printf("%c%c%c%c%c",179,32,124,16,179);
+            printf("%c%c%c%c%c",179,60,124,32,179);
         else if(arr1[i]==42) {
             printf("%c%c", 179, 32);
             color(0);
@@ -599,8 +599,6 @@ void custom(int z){
     res = (x*y)-bomb;
     if(z==1)
         game(1);
-    //if(z==2)
-      //  game(1);
 }
 }
 void moo(char question[],char answer[]){
@@ -762,7 +760,6 @@ int home(char question[],char answer[]){
     c:
     {
         system("cls");
-
         color(15);
         printf("user : %s\n", esm);
         color(15);
@@ -835,6 +832,7 @@ quit(question,answer);
     };
 }
 int main(int z){
+    system("cls");
     if(z==2){
         return 0;
     }
