@@ -43,3 +43,8 @@ Follow the on-screen prompts to navigate through the game menus and start playin
 - Press `1` to place or remove a flag.
 - Press `2` to reveal the contents of a cell.
 - `Q` can be used to quit the game from the main gameplay screen.
+
+
+## License
+
+Terminal-Minesweeper is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
