@@ -1,9 +1,14 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#include<windows.h>
 #include<time.h>
+#ifdef _WIN32
+#include<windows.h>
 #include<conio.h>
+#else 
+#include "unix_color.h"
+#include <termios.h>
+#endif
 #include <unistd.h>
 static int x,y,res,bomb,neshanx=0,neshany=0;
 static char esm[50];
@@ -26,11 +31,48 @@ char *read_file(char * filename){
     fclose(file);
     return string;
 }
+
+#ifdef _WIN32
 void color(int c){
     HANDLE  hConsole;
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, c);
 }
+void clear_screen(){
+    system("cls");
+}
+char getch(){
+    char ch =0;
+    if (_kbhit())ch = _getch();
+    return ch;
+}
+#else
+void clear_screen(){
+    system("clear");
+}
+char getch() {
+    char c;
+    struct termios oldt, newt;
+
+    // Save terminal settings
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+
+    // Disable canonical mode and echo
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    // Read one character
+    read(STDIN_FILENO, &c, 1);
+
+    // Restore terminal settings
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+    return c;
+}
+
+#endif
+
 int main();
 void ww(char question[x][y],char answer[x][y]);
 int home(char question[],char answer[]);
@@ -49,7 +91,7 @@ void updateo(char question[x][y],char answer[x][y]){
     int q1=0,q2=0,q3;
     goto chap;
     chap:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("flag: %d\tbomb: %d\n",flag,bomb);
     //q1=0,q2=0;
@@ -66,9 +108,9 @@ void updateo(char question[x][y],char answer[x][y]){
 }
 void ll(char question[x][y],char answer[x][y]){
     int q1=0,q2=0;
-    char ch=NULL;
+    char ch=0;
     upl:{
-    system("cls");
+    clear_screen();
     color(15);
     updateo(question,answer);
     color(15);
@@ -83,7 +125,7 @@ void ll(char question[x][y],char answer[x][y]){
 }
     goto porsesh2;
     downl:{
-    system("cls");
+    clear_screen();
     color(15);
     updateo(question,answer);
     color(15);
@@ -97,8 +139,8 @@ void ll(char question[x][y],char answer[x][y]){
     q1=0;
 }
     porsesh2:{
-    ch=NULL;
-    if (_kbhit())ch = _getch();
+    ch=0;
+    ch = getch();
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
@@ -119,7 +161,7 @@ void ll(char question[x][y],char answer[x][y]){
 void ww(char question[x][y],char answer[x][y]){
     long long int t=end-start;
     int q1=0,q2=0;
-    char ch=NULL;
+    char ch=0;
     long int fp=(x*y*5)-t;
     FILE *hi;
     hi=fopen("poo.txt","a");
@@ -129,7 +171,7 @@ void ww(char question[x][y],char answer[x][y]){
     fprintf(hi,"%s(%d*%d)\t%ld\t%s",esm,x,x,fp,p);
     fclose(hi);
     upw:{
-    system("cls");
+    clear_screen();
     color(15);
     updateo(question,answer);
     color(15);
@@ -147,7 +189,7 @@ void ww(char question[x][y],char answer[x][y]){
 }
     goto porsesh3;
     downw:{
-    system("cls");
+    clear_screen();
     color(15);
     updateo(question,answer);
     color(15);
@@ -164,8 +206,8 @@ void ww(char question[x][y],char answer[x][y]){
     q1=0;
 }
     porsesh3:{
-    ch=NULL;
-    if (_kbhit())ch = _getch();
+    ch=0;
+    ch = getch();
     if(ch==NULL){goto porsesh3;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
@@ -185,7 +227,7 @@ void ww(char question[x][y],char answer[x][y]){
 
 }
 void wtf(char arr1[100],int culom,int poin){
-    //system("cls");
+    //clear_screen();
     int i;
     color(0);
     printf("  ");
@@ -262,7 +304,7 @@ void update(char question[x][y],char answer[x][y]){
     int q1=0,q2=0,q3;
     goto chap;
     chap:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("flag: %d\tbomb: %d\n",flag,bomb);
     //q1=0,q2=0;
@@ -283,8 +325,8 @@ void update(char question[x][y],char answer[x][y]){
     else
         goto win;
     porsesh:{}
-    ch = NULL;
-    if (_kbhit())ch = _getch();
+    ch = 0;
+    ch = getch();
     if(ch==NULL){goto porsesh;}
     if((ch=='w'|| ch=='W')&&q1!=0){q1--;}
     else if(ch=='q'||ch=='Q'){exito(question,answer);}
@@ -474,9 +516,9 @@ void game(int z){
 }
 void exito(char question[],char answer[]){
     int q1=0,q2=0;
-    char ch=NULL;
+    char ch=0;
     upl:{
-    system("cls");
+    clear_screen();
     color(15);
     //updateo(question,answer);
     color(15);
@@ -491,7 +533,7 @@ void exito(char question[],char answer[]){
 }
     goto porsesh2;
     downl:{
-    system("cls");
+    clear_screen();
     color(15);
     //updateo(question,answer);
     color(15);
@@ -505,8 +547,8 @@ void exito(char question[],char answer[]){
     q1=0;
 }
     porsesh2:{
-    ch=NULL;
-    if (_kbhit())ch = _getch();
+    ch=0;
+    ch = getch();
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
@@ -525,9 +567,9 @@ void exito(char question[],char answer[]){
 }
 void quit(char question[],char answer[]){
     int q1=0,q2=0;
-    char ch=NULL;
+    char ch=0;
     upl:{
-    system("cls");
+    clear_screen();
     color(15);
     //updateo(question,answer);
     color(15);
@@ -542,7 +584,7 @@ void quit(char question[],char answer[]){
 }
     goto porsesh2;
     downl:{
-    system("cls");
+    clear_screen();
     color(15);
     //updateo(question,answer);
     color(15);
@@ -556,8 +598,8 @@ void quit(char question[],char answer[]){
     q1=0;
 }
     porsesh2:{
-    ch=NULL;
-    if (_kbhit())ch = _getch();
+    ch=0;
+    ch = getch();
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
@@ -577,15 +619,15 @@ void quit(char question[],char answer[]){
 }
 void custom(int z){
     int n=8;
-    char ch=NULL;
+    char ch=0;
     chap:
-    system("cls");
+    clear_screen();
     color(15);
     //printf("%c",30);
     printf("choos the Square side size:\n%c\n%d\n%c\n",30,n,31);
-    ch=NULL;
+    ch=0;
     porsesh:
-    if (_kbhit())ch = _getch();
+    ch = getch();
     if(ch==NULL){goto porsesh;}
     if((ch=='s'|| ch=='S') && n!=4){n--;}
     else if((ch=='w'|| ch=='W') && n!=12){n++;}
@@ -605,7 +647,7 @@ void moo(char question[],char answer[]){
     int q1=0;
     char ch;
     a:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("User name: %s\n please choose a map:\n ",esm);
     color(192);
@@ -626,7 +668,7 @@ void moo(char question[],char answer[]){
     goto porsesh;
 }
     b:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("User name: %s\n please choose a map:\n ",esm);
     color(15);
@@ -647,7 +689,7 @@ void moo(char question[],char answer[]){
     goto porsesh;
 }
     c:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("User name: %s\n please choose a map:\n ",esm);
     color(15);
@@ -669,7 +711,7 @@ void moo(char question[],char answer[]){
     goto porsesh;
 }
     d:{
-    system("cls");
+    clear_screen();
     color(15);
     printf("User name: %s\n please choose a map:\n ",esm);
     color(15);
@@ -690,8 +732,8 @@ void moo(char question[],char answer[]){
     goto porsesh;
 }
     porsesh:{
-    ch=NULL;
-    if (_kbhit())ch = _getch();
+    ch=0;
+    ch = getch();
     if(ch==NULL){goto porsesh;}
     if((ch=='w'|| ch=='W') && q1!=0){q1--;}
     else if((ch=='s'|| ch=='S') && q1!=3){q1++;}
@@ -731,20 +773,19 @@ int home(char question[],char answer[]){
     int q1=0;
     a:
     {
-        system("cls");
-
+        clear_screen();
         color(15);
         printf("user : %s\n", esm);
         color(192);
         printf("play       ");
         color(15);
-        printf("\nhistory   \nchange name\nExit     ");
+        printf("\nhistory   \nchange name\nExit     \n");
         q1=0;
         goto porsesh;
     }
     b:
     {
-        system("cls");
+        clear_screen();
 
         color(15);
         printf("user : %s\n", esm);
@@ -759,7 +800,7 @@ int home(char question[],char answer[]){
     }
     c:
     {
-        system("cls");
+        clear_screen();
         color(15);
         printf("user : %s\n", esm);
         color(15);
@@ -773,7 +814,7 @@ int home(char question[],char answer[]){
     }
     d:
     {
-        system("cls");
+        clear_screen();
 
         color(15);
         printf("user : %s\n", esm);
@@ -789,9 +830,9 @@ int home(char question[],char answer[]){
         goto porsesh;
     }
     porsesh:{}
-    ch=NULL;
-    if (_kbhit())ch = _getch();
-    if(ch==NULL){goto porsesh;}
+    ch=0;
+    ch = getch();
+    if(ch==0){goto porsesh;}
     if((ch=='w'|| ch=='W') && q1!=0){q1--;}
     else if((ch=='s'|| ch=='S') && q1!=3){q1++;}
     else if(ch=='1'&&q1==0){goto one;}
@@ -820,10 +861,10 @@ moo(question,answer);
         goto porsesh;
     };
     three:{
-        system("cls");
+        clear_screen();
 printf("pleas enter your name:");
 gets(esm);
-system("cls");
+clear_screen();
 goto c;
 //goto porsesh;
     };
@@ -832,7 +873,7 @@ quit(question,answer);
     };
 }
 int main(int z){
-    system("cls");
+    clear_screen();
     if(z==2){
         return 0;
     }
