@@ -20,7 +20,7 @@ To compile and run this game, you'll need:
 To compile the Minesweeper game, use the following GCC command:
 
 ```bash
-gcc -o minesweeper main.c -w
+gcc -o minesweeper mini.c -w
 ```
 
 This will compile the `main.c` file into an executable named `minesweeper.exe`. The `-w` flag is used to suppress all compiler warnings. This can make the compilation output cleaner :)
