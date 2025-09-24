@@ -23,7 +23,7 @@ To compile the Minesweeper game, use the following GCC command:
 gcc -o minesweeper mini.c -w
 ```
 
-This will compile the `main.c` file into an executable named `minesweeper.exe`. The `-w` flag is used to suppress all compiler warnings. This can make the compilation output cleaner :)
+This will compile the `mini.c` file into an executable named `minesweeper.exe`. The `-w` flag is used to suppress all compiler warnings. This can make the compilation output cleaner :)
 
 
 ## Running the Game
