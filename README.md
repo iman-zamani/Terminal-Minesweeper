@@ -1,58 +1,72 @@
 # Terminal Minesweeper
 
 Welcome to **Terminal Minesweeper**!
-This is my very first programming project — the code is **dirty, messy, and far from perfect**, but it works! It's a simple yet challenging Minesweeper game that you can play directly in your terminal.
+This was the **very first program I ever wrote in my life**. The code is **incredibly dirty, messy, and absolutely terrible**, honestly, it has no value to look at. But hey, it works, and you can play Minesweeper right in your terminal!!!!
 
-Originally built for Windows, the game now also runs on Unix-like systems such as macOS and Linux, with some limitations in how the console characters are displayed.
+Now with **full support for Windows, macOS, and Linux** — the game runs properly on all major platforms, with the same gameplay and visuals everywhere.
+
+---
 
 ## Features
 
-* Multiple difficulty levels
 * Customizable game grid sizes
 * Timer and scoring system
 * Interactive console-based UI with color highlights
+* Runs on **Windows, Mac, and Linux** with no compromises 
+
+---
 
 ## Prerequisites
 
-To compile and run this game, you'll need:
+To compile and run this game, you’ll need:
 
-* GCC compiler
-* A Windows or Unix-like environment (macOS / Linux supported, though characters may not display exactly as intended).
+* Clang compiler
+* A Windows, macOS, or Linux environment
+
+---
 
 ## Compilation
 
-To compile the Minesweeper game, use the following GCC command:
+To compile the Minesweeper game, use:
 
 ```bash
-gcc -o minesweeper mini.c -w
+clang -o minesweeper mini.c -w
 ```
 
-This will compile the `mini.c` file into an executable named `minesweeper.exe`.
-The `-w` flag is used to suppress all compiler warnings, which keeps the output cleaner.
+This compiles the `mini.c` file into an executable named `minesweeper`.
+The `-w` flag suppresses all compiler warnings (trust me, you don’t want to see them).
+
+---
 
 ## Running the Game
 
-After compiling, you can start the game by running:
+After compiling, start the game with:
 
 ```bash
 ./minesweeper
 ```
 
-Follow the on-screen prompts to navigate through the menus and start playing!
+Follow the on-screen prompts to navigate the menus and start playing!
+
+---
 
 ## Game Controls
 
-* Use `W` and `S` to navigate **up** and **down** through the menu options.
-* Use `A` and `D` to navigate **left** and **right** within the game grid.
-* Press `1` to **place or remove a flag**.
-* Press `2` to **reveal a cell**.
-* Press `Q` to **quit** the game during gameplay.
+* **Enter** → **Place or remove a flag**
+* **Spacebar** → **Reveal a cell**
+* `W` / `S` → Move **up** and **down** in menus
+* `A` / `D` → Move **left** and **right** on the grid
+* `Q` → **Quit** the game
+
+---
 
 ## Notes
 
-* On Windows, the game displays as intended.
-* On Unix-like systems (macOS/Linux), the game works but the console graphics may not render correctly.
+* Works fully on Windows, macOS, and Linux.
+* The game itself is fun — the code behind it is not.
+
+---
 
 ## License
 
-Terminal Minesweeper is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+Terminal Minesweeper is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
