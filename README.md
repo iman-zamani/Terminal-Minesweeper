@@ -59,14 +59,6 @@ Follow the on-screen prompts to navigate the menus and start playing!
 * `Q` → **Quit** the game
 
 ---
-
-## Notes
-
-* Works fully on Windows, macOS, and Linux.
-* The game itself is fun — the code behind it is not.
-
----
-
 ## License
 
 Terminal Minesweeper is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
