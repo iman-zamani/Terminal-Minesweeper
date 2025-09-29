@@ -61,4 +61,4 @@ Follow the on-screen prompts to navigate the menus and start playing!
 ---
 ## License
 
-Terminal Minesweeper is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Terminal Minesweeper is under the MIT License. See the [LICENSE](LICENSE) file for details.
