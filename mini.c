@@ -74,7 +74,7 @@ char getch() {
 
 #endif
 
-int main();
+int main(int z);
 void ww(char question[x][y],char answer[x][y]);
 int home(char question[],char answer[]);
 void ll(char question[x][y],char answer[x][y]);
@@ -261,7 +261,8 @@ void wtf(char arr1[100],int culom,int poin){
         else if(arr1[i]==42) {
             printf("│ ");
             color(0);
-            printf("%c",-2);
+            //printf("%c",-2);
+            printf(" ");
             color(n);
             printf(" │");
         }
@@ -864,7 +865,7 @@ moo(question,answer);
     three:{
         clear_screen();
 printf("pleas enter your name:");
-gets(esm);
+scanf("%s",esm);
 clear_screen();
 goto c;
 //goto porsesh;
@@ -896,9 +897,9 @@ int main(int z){
     if(z==2){
         return 0;
     }
-    printf("Welcome to minesweeper\npleas enter your name:");
+    printf("Welcome to minesweeper\npleas enter your name: ");
     //char esm[50];
-    gets(esm);
+    scanf("%s",esm);
 
     char question[100],answer[100];
     home(question,answer);
