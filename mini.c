@@ -2,6 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<time.h>
+#include <locale.h>
 #ifdef _WIN32
 #include<windows.h>
 #include<conio.h>
@@ -240,7 +241,7 @@ void wtf(char arr1[100],int culom,int poin){
         else{n=175;}
         if(i==poin){n=79;}
         color(n);
-        printf("%c%c%c%c%c",218,196,196,196,191);
+        printf("┌───┐");
         n=175;
         color(n);
         if(i+1<culom){printf("  ");}
@@ -256,16 +257,16 @@ void wtf(char arr1[100],int culom,int poin){
         if(i==poin){n=79;}
         color(n);
         if(arr1[i]==37)
-            printf("%c%c%c%c%c",179,60,124,32,179);
+            printf("│ %c │",124);
         else if(arr1[i]==42) {
-            printf("%c%c", 179, 32);
+            printf("│ ");
             color(0);
             printf("%c",-2);
             color(n);
-            printf("%c%c", 32, 179);
+            printf(" │");
         }
         else
-            printf("%c%c%c%c%c",179,32,arr1[i],32,179);
+            printf("│ %c │",arr1[i]);
         n=175;
         color(n);
         if(i+1<culom){printf("  ");}
@@ -280,7 +281,7 @@ void wtf(char arr1[100],int culom,int poin){
         else{n=175;}
         if(i==poin){n=79;}
         color(n);
-        printf("%c%c%c%c%c", 192,196,196,196,217);
+        printf("└───┘");
         n=175;
         color(n);
         if(i+1<culom){printf("  ");}
@@ -873,6 +874,24 @@ quit(question,answer);
     };
 }
 int main(int z){
+        // Use the user's UTF-8 locale when available
+    setlocale(LC_ALL, "");
+
+    #ifdef _WIN32
+    // Make the Windows console use UTF-8 for input/output
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    // Try to enable VT processing (helps with box-drawing on newer Windows)
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hOut != INVALID_HANDLE_VALUE) {
+        DWORD mode = 0;
+        if (GetConsoleMode(hOut, &mode)) {
+            mode |= ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+            SetConsoleMode(hOut, mode);
+        }
+    }
+    #endif
     clear_screen();
     if(z==2){
         return 0;
