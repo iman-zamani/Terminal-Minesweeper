@@ -145,11 +145,11 @@ void ll(char question[x][y],char answer[x][y]){
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
-    else if(ch=='1'&&q1==1){
+    else if(ch==10&&q1==1){
         color(15);
         moo(question, answer);
     }
-    else if(ch=='1' && q1==0){
+    else if(ch==10 && q1==0){
         color(15);
         //change this
         home(question, answer);
@@ -212,11 +212,11 @@ void ww(char question[x][y],char answer[x][y]){
     if(ch==NULL){goto porsesh3;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
-    else if(ch==49 &&q1==1){
+    else if(ch==10 &&q1==1){
         color(15);
         moo(question, answer);
     }
-    else if(ch==49 && q1==0){
+    else if(ch==10 && q1==0){
         color(15);
         home(question,answer);
         //game(1);
@@ -335,7 +335,7 @@ void update(char question[x][y],char answer[x][y]){
     else if((ch=='s'|| ch=='S') && q1!=(y-1)){q1++;}
     else if((ch=='d' || ch=='D') && q2!=(x-1)){q2++;}
     else if((ch=='a' || ch=='A')&& q2!=0){q2--;}
-    else if(ch=='1'){
+    else if(ch=='\n'){
         if(question[q2][q1]==32 && flag>0){
             question[q2][q1]='%';
             flag--;
@@ -347,7 +347,7 @@ void update(char question[x][y],char answer[x][y]){
         else
             goto porsesh;
     }
-    else if(ch=='2' && question[q2][q1]!='%'){
+    else if(ch==' ' && question[q2][q1]!='%'){
         if(answer[q2][q1]!='*'&& question[q2][q1]!=answer[q2][q1]){
             if(answer[q2][q1]==48) {
                 question[q2][q1]=answer[q2][q1];
@@ -554,11 +554,11 @@ void exito(char question[],char answer[]){
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
-    else if(ch==49 && q1==1){
+    else if(ch==10 && q1==1){
         color(15);
         home(question,answer);
     }
-    else if(ch==49 && q1==0){
+    else if(ch==10 && q1==0){
         color(15);
         moo(question,answer);
     }
@@ -605,13 +605,13 @@ void quit(char question[],char answer[]){
     if(ch==NULL){goto porsesh2;}
     if((ch=='w'|| ch=='W')&&q1==0){q1++;}
     else if((ch=='s'|| ch=='S') && q1==1){q1--;}
-    else if(ch==49 && q1==1){
+    else if(ch==10 && q1==1){
         exit(0);
         qp=2;
         main(2);
 
     }
-    else if(ch==49 && q1==0){
+    else if(ch==10 && q1==0){
         home(question,answer);
     }
     else{goto porsesh2;}
@@ -633,7 +633,7 @@ void custom(int z){
     if(ch==NULL){goto porsesh;}
     if((ch=='s'|| ch=='S') && n!=4){n--;}
     else if((ch=='w'|| ch=='W') && n!=12){n++;}
-    else if(ch=='1'){goto one;}
+    else if(ch==10){goto one;}
     goto chap;
     one:{
     x=n;
@@ -739,10 +739,10 @@ void moo(char question[],char answer[]){
     if(ch==NULL){goto porsesh;}
     if((ch=='w'|| ch=='W') && q1!=0){q1--;}
     else if((ch=='s'|| ch=='S') && q1!=3){q1++;}
-    else if(ch=='1'&&q1==0){goto one;}
-    else if(ch=='1'&&q1==1){goto two;}
-    else if(ch=='1' && q1==2){goto three;}
-    else if(ch=='1' && q1==3){goto four;}
+    else if(ch==10&&q1==0){goto one;}
+    else if(ch==10&&q1==1){goto two;}
+    else if(ch==10 && q1==2){goto three;}
+    else if(ch==10 && q1==3){goto four;}
     else{goto porsesh;}
     if(q1==0){goto a;}
     else if(q1==1){goto b;}
@@ -837,16 +837,16 @@ int home(char question[],char answer[]){
     if(ch==0){goto porsesh;}
     if((ch=='w'|| ch=='W') && q1!=0){q1--;}
     else if((ch=='s'|| ch=='S') && q1!=3){q1++;}
-    else if(ch=='1'&&q1==0){goto one;}
-    else if(ch=='1'&&q1==1){
+    else if(ch==10&&q1==0){goto one;}
+    else if(ch==10&&q1==1){
         if(k==0)goto two;
     if(k==2){
         k=0;
         goto b;
     }
     }
-    else if(ch=='1' && q1==2){goto three;}
-    else if(ch=='1' && q1==3){goto four;}
+    else if(ch==10 && q1==2){goto three;}
+    else if(ch==10 && q1==3){goto four;}
     else{goto porsesh;}
     if(q1==0){goto a;}
     else if(q1==1){goto b;}
